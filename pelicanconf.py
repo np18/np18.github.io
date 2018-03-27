@@ -67,3 +67,7 @@ TAG_CLOUD_STEPS = 1
 NOTEBOOK_DIR = 'notebooks'
 
 EXTRA_HEADER = open('_nb_header.html').read() if os.path.exists('_nb_header.html') else None
+
+
+STATIC_PATHS = ['images', 'extra/CNAME']
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
