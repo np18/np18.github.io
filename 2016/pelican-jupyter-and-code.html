@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
+<head>
+    <title>Configure Pelican for Jupyter notebooks, code, and math display - NP Blog</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<style type="text/css">
+
+/*some stuff for output/input prompts*/
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
+div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
+div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
+div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
+@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
+div.prompt:empty{padding-top:0;padding-bottom:0}
+div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
+div.inner_cell{width:90%;}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
+div.input_prompt{color:navy;border-top:1px solid transparent;}
+div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
+div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
+div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
+div.output_prompt{color:darkred;}
+
+a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
+h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
+/* end stuff for output/input prompts*/
+
+
+.highlight-ipynb .hll { background-color: #ffffcc }
+.highlight-ipynb  { background: #f8f8f8; }
+.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
+.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
+.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight-ipynb .o { color: #666666 } /* Operator */
+.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
+.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
+.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
+.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
+.highlight-ipynb .go { color: #888888 } /* Generic.Output */
+.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
+.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
+.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
+.highlight-ipynb .m { color: #666666 } /* Literal.Number */
+.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
+.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
+.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
+.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight-ipynb .no { color: #880000 } /* Name.Constant */
+.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
+.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
+.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
+.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
+.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
+.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
+.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
+.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
+.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+
+div.collapseheader {
+    width=100%;
+    padding: 2px;
+    cursor: pointer;
+    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+</style>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+
+<link rel="canonical" href="../2016/pelican-jupyter-and-code.html">
+
+        <meta name="author" content="Eric Carlson" />
+        <meta name="keywords" content="python,website,github" />
+        <meta name="description" content="As a final step we&#39;ll configure Pelican to enable Jupyter notebook integration. This will let us quickly copy in analysis .ipynb files and include math, markdown, and figures. In further configuration we can even enable Pelican plugins for UML diagrams to add text-generated activity/state diagrams, or can add plugins …" />
+
+        <meta property="og:site_name" content="NP Blog" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Configure Pelican for Jupyter notebooks, code, and math display"/>
+        <meta property="og:url" content="../2016/pelican-jupyter-and-code.html"/>
+        <meta property="og:description" content="As a final step we&#39;ll configure Pelican to enable Jupyter notebook integration. This will let us quickly copy in analysis .ipynb files and include math, markdown, and figures. In further configuration we can even enable Pelican plugins for UML diagrams to add text-generated activity/state diagrams, or can add plugins …"/>
+        <meta property="article:published_time" content="2016-06-03" />
+            <meta property="article:section" content="2016" />
+            <meta property="article:tag" content="python" />
+            <meta property="article:tag" content="website" />
+            <meta property="article:tag" content="github" />
+            <meta property="article:author" content="Eric Carlson" />
+
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="../theme/css/bootstrap.yeti.min.css" type="text/css"/>
+    <link href="../theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="../theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="../theme/css/style.css" type="text/css"/>
+
+        <link href="../feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="NP Blog ATOM Feed"/>
+
+
+
+        <link href="../feeds/2016.atom.xml" type="application/atom+xml" rel="alternate"
+              title="NP Blog 2016 ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="../" class="navbar-brand">
+NP Blog            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                         <li><a href="../pages/about.html">
+                             About
+                          </a></li>
+                         <li><a href="../pages/projects.html">
+                             Projects
+                          </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="../2016/pelican-jupyter-and-code.html"
+                       rel="bookmark"
+                       title="Permalink to Configure Pelican for Jupyter notebooks, code, and math display">
+                        Configure Pelican for Jupyter notebooks, code, and math display
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2016-06-03T05:00:00-05:00"> Fri 03 June 2016</time>
+    </span>
+
+
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="../tag/python.html">python</a>
+        /
+	<a href="../tag/website.html">website</a>
+        /
+	<a href="../tag/github.html">github</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <p>As a final step we'll configure Pelican to enable Jupyter notebook integration.  This will let us
+quickly copy in analysis .ipynb files and include math, markdown, and figures.  In further configuration
+we can even enable Pelican plugins for UML diagrams to add text-generated activity/state diagrams,
+or can add plugins for comments to interact with readers.</p>
+<p>Now add pelican plugins and themes and activate as needed...</p>
+<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/code/ext
+$ git clone --recursive https://github.com/getpelican/pelican-plugins
+</pre></div>
+
+
+<p>Also add theme to start, using Jake Vanderplaas' since he wrote the notebook plugin I'm using, should work together...</p>
+<div class="highlight"><pre><span></span>$ git submodule add https://github.com/jakevdp/pelican-octopress-theme.git themes/octopress
+</pre></div>
+
+
+<p>Add liquid plugin to pelicon conf and add theme (<code>pelicanconf.py</code>):</p>
+<div class="highlight"><pre><span></span>PLUGIN_PATHS = [&#39;/Users/ecarlson/code/external/pelican-plugins&#39;, ]
+PLUGINS = [&#39;liquid_tags.img&#39;, &#39;liquid_tags.video&#39;,
+           &#39;liquid_tags.youtube&#39;, &#39;liquid_tags.vimeo&#39;,
+           &#39;liquid_tags.include_code&#39;, &#39;liquid_tags.notebook&#39;]
+
+NOTEBOOK_DIR = &#39;notebooks&#39;
+
+EXTRA_HEADER = open(&#39;_nb_header.html&#39;).read().decode(&#39;utf-8&#39;) if os.path.exists(&#39;_nb_header.html&#39;) else None
+
+THEME = &#39;themes/octopress&#39;
+</pre></div>
+
+
+<p>I also set to default articles as draft mode:</p>
+<div class="highlight"><pre><span></span>DEFAULT_METADATA = {
+    &#39;status&#39;: &#39;draft&#39;,
+}
+</pre></div>
+
+
+<p>With these changes we should now be able to create Jupyter notebooks and include them in our blog
+posts (tests below).</p>
+<p>Lastly, I like to modify my jupyter to auto-save python files when saving .ipynb - this makes it
+easier in git to tell what changed from version to version, as often meaninglss changes (e.g.
+re-running a notebook, which changes cell numbering) result in a commit log noise.</p>
+<p><code>~/.jupyter/jupyter_notebook_config.py</code>:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_call</span>
+
+<span class="k">def</span> <span class="nf">post_save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">os_path</span><span class="p">,</span> <span class="n">contents_manager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;post-save hook for converting notebooks to .py scripts&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">model</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;notebook&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="c1"># only do this for notebooks</span>
+    <span class="n">d</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os_path</span><span class="p">)</span>
+    <span class="n">check_call</span><span class="p">([</span><span class="s1">&#39;ipython&#39;</span><span class="p">,</span> <span class="s1">&#39;nbconvert&#39;</span><span class="p">,</span> <span class="s1">&#39;--to&#39;</span><span class="p">,</span> <span class="s1">&#39;script&#39;</span><span class="p">,</span> <span class="n">fname</span><span class="p">],</span> <span class="n">cwd</span><span class="o">=</span><span class="n">d</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">FileContentsManager</span><span class="o">.</span><span class="n">post_save_hook</span> <span class="o">=</span> <span class="n">post_save</span>
+</pre></div>
+
+
+<h2>Markup Test</h2>
+<p>Python code:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;The path-less shebang syntax *will* show line numbers.&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Testing 1 2 3&#39;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Bash code:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">for</span> n in t1 t2 t3<span class="p">;</span> <span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$n</span>
+<span class="k">done</span>
+</pre></div>
+</td></tr></table>
+
+<p>Notebook test:</p>
+<p>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline  
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python version &#39;</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Pandas version &#39;</span> <span class="o">+</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numpy version &#39;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Python version 3.5.2 |Anaconda 4.2.0 (x86_64)| (default, Jul  2 2016, 17:52:12) 
+[GCC 4.2.1 Compatible Apple LLVM 4.2 (clang-425.0.28)]
+Pandas version 0.18.1
+Numpy version 1.11.1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test Notebook&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Test Notebook
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+JEkq2P8DpQ6AbJ0hSOUAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;c1&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;c2&#39;</span><span class="p">:[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]})</span>
+<span class="n">df</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>c1</th>
+      <th>c2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># &lt;!-- collapse=True --&gt; </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing Collapsible code&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Testing Collapsible code
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Testing math markup:</p>
+<p>Inline: $e^{i\pi} + 1 = 0$</p>
+<p>Display:</p>
+<p>$$e^x=\sum_{i=0}^\infty \frac{1}{i!}x^i$$</p>
+
+</div>
+</div>
+</div>
+ 
+
+</p>
+<h2>References</h2>
+<ul>
+<li>https://www.notionsandnotes.org/tech/web-development/pelican-static-blog-setup.html</li>
+<li>https://h-gens.github.io/getting-started-with-pelican-and-ipython-notebooks.html</li>
+<li>https://pages.github.com/</li>
+<li>https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3</li>
+<li>https://rjweiss.github.io/articles/2014_03_31/testing-ipython-integration/</li>
+<li>http://danielfrg.com/blog/2013/03/08/pelican-ipython-notebook-plugin/</li>
+<li>http://docs.getpelican.com/en/3.1.1/getting_started.html</li>
+</ul>
+            </div>
+            <!-- /.entry-content -->
+<section class="well" id="related-posts">
+    <h4>Part <built-in method index of str object at 0x14f9c7061bf0> of the  series</h4>
+</section>
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'np-demo'; // required: replace example with your forum shortname
+
+                    var disqus_identifier = 'pelican-jupyter-and-code';
+                var disqus_url = '../2016/pelican-jupyter-and-code.html';
+
+            var disqus_config = function () {
+                this.language = "en";
+            };
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+    </section>
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<!-- Sidebar -->
+<section class="well well-sm">
+  <ul class="list-group list-group-flush">
+
+<!-- Sidebar/Social -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+  <ul class="list-group" id="social">
+    <li class="list-group-item"><a href="https://www.linkedin.com/in/erictcarlson"><i class="fa fa-linkedin-square fa-lg"></i> LinkedIn</a></li>
+    <li class="list-group-item"><a href="https://github.com/npatta01"><i class="fa fa-github-square fa-lg"></i> Github</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Social -->
+
+<!-- Sidebar/Recent Posts -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Recent Posts</span></h4>
+  <ul class="list-group" id="recentposts">
+    <li class="list-group-item"><a href="../2018/how-to-blog-with-pelican.html">How To Blog with Pelican</a></li>
+    <li class="list-group-item"><a href="../2018/formatting.html">Formatting</a></li>
+    <li class="list-group-item"><a href="../2018/docker-cheat-sheet.html">Docker Cheat Sheet</a></li>
+    <li class="list-group-item"><a href="../2018/initial.html">Hello World</a></li>
+    <li class="list-group-item"><a href="../2016/pelican-jupyter-and-code.html">Configure Pelican for Jupyter notebooks, code, and math display</a></li>
+  </ul>
+</li>
+<!-- End Sidebar/Recent Posts -->
+
+<!-- Sidebar/Categories -->
+<li class="list-group-item">
+  <h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Categories</span></h4>
+  <ul class="list-group" id="categories">
+    <li class="list-group-item">
+      <a href="../category/2016.html"><i class="fa fa-folder-open fa-lg"></i>2016</a>
+    </li>
+    <li class="list-group-item">
+      <a href="../category/docker.html"><i class="fa fa-folder-open fa-lg"></i>docker</a>
+    </li>
+    <li class="list-group-item">
+      <a href="../category/fomratting.html"><i class="fa fa-folder-open fa-lg"></i>fomratting</a>
+    </li>
+    <li class="list-group-item">
+      <a href="../category/random.html"><i class="fa fa-folder-open fa-lg"></i>random</a>
+    </li>
+    <li class="list-group-item">
+      <a href="../category/tutorial.html"><i class="fa fa-folder-open fa-lg"></i>tutorial</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Categories -->
+
+<!-- Sidebar/Tag Cloud -->
+<li class="list-group-item">
+  <a href="../"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+  <ul class="list-group " id="tags">
+    <li class="list-group-item tag-1">
+      <a href="../tag/dog.html">dog</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/cat.html">cat</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/docker.html">Docker</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/blog.html">blog</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/tutorial.html">tutorial</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/spotify.html">Spotify</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/python.html">python</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/website.html">website</a>
+    </li>
+    <li class="list-group-item tag-1">
+      <a href="../tag/github.html">github</a>
+    </li>
+  </ul>
+</li>
+<!-- End Sidebar/Tag Cloud -->
+  </ul>
+</section>
+<!-- End Sidebar -->            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2018 Nidhin Pattaniyil
+            &middot; Powered by <a href="https://github.com/getpelican/pelican-themes/tree/master/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="../theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="../theme/js/respond.min.js"></script>
+
+
+    <!-- Disqus -->
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'np-demo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script');
+            s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <!-- End Disqus Code -->
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-116327495-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!-- End Google Analytics Code -->
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $("div.collapseheader").click(function () {
+    $header = $(this).children("span").first();
+    $codearea = $(this).children(".input_area");
+    console.log($(this).children());
+    $codearea.slideToggle(500, function () {
+        $header.text(function () {
+            return $codearea.is(":visible") ? "Collapse Code" : "Expand Code";
+        });
+    });
+});
+});
+</script>
+</body>
+</html>

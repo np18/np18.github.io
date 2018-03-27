@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>NP Blog - fomratting</title><link href="https://np18.github.io/" rel="alternate"></link><link href="https://np18.github.io/feeds/fomratting.atom.xml" rel="self"></link><id>https://np18.github.io/</id><updated>2018-01-30T00:00:00-05:00</updated><entry><title>Formatting</title><link href="https://np18.github.io/2018/formatting.html" rel="alternate"></link><published>2018-01-30T00:00:00-05:00</published><updated>2018-01-30T00:00:00-05:00</updated><author><name>Nidhin Pattaniyil</name></author><id>tag:np18.github.io,2018-01-30:/2018/formatting.html</id><summary type="html">&lt;p&gt;Docker Guide&lt;/p&gt;
+&lt;p&gt;There are two ways to specify the identifier:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The triple-colon syntax will *not* show line numbers.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To display line numbers, use a path-less shebang instead of colons:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The path-less shebang syntax *will* show line numbers.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Linking:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://np18.github.io/2018/initial.html"&gt;a link relative to the current file&lt;/a&gt;      &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://np18.github.io/2018/initial.html"&gt;a link …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;Docker Guide&lt;/p&gt;
+&lt;p&gt;There are two ways to specify the identifier:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The triple-colon syntax will *not* show line numbers.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To display line numbers, use a path-less shebang instead of colons:&lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;The path-less shebang syntax *will* show line numbers.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+
+&lt;p&gt;Linking:&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://np18.github.io/2018/initial.html"&gt;a link relative to the current file&lt;/a&gt;      &lt;/p&gt;
+&lt;p&gt;&lt;a href="https://np18.github.io/2018/initial.html"&gt;a link relative to the content root&lt;/a&gt;      &lt;/p&gt;
+&lt;p&gt;When playing around with Spark on my &lt;a href="{filename}/installing-virtual-hadoop-cluster.md"&gt;local&lt;/a&gt;, I . &lt;/p&gt;</content><category term="cat"></category><category term="dog"></category></entry></feed>

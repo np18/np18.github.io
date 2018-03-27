@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>NP Blog - tutorial</title><link href="https://np18.github.io/" rel="alternate"></link><link href="https://np18.github.io/feeds/tutorial.atom.xml" rel="self"></link><id>https://np18.github.io/</id><updated>2018-03-27T00:00:00-05:00</updated><entry><title>How To Blog with Pelican</title><link href="https://np18.github.io/2018/how-to-blog-with-pelican.html" rel="alternate"></link><published>2018-03-27T00:00:00-05:00</published><updated>2018-03-27T00:00:00-05:00</updated><author><name>Nidhin Pattaniyil</name></author><id>tag:np18.github.io,2018-03-27:/2018/how-to-blog-with-pelican.html</id><summary type="html">&lt;p&gt;In this tutotial, we will cover creating a blog with Pelican and host it on Github  &lt;/p&gt;
+&lt;p&gt;The benefits of blogging:
+- personl brand 
+- share your knowledge
+- helps like minded people connect with you.&lt;/p&gt;
+&lt;p&gt;At work, we use python, so I choose &lt;a href=""&gt;Pelican&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Setting up Env&lt;/h1&gt;
+&lt;p&gt;Create a python Env &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda create …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;In this tutotial, we will cover creating a blog with Pelican and host it on Github  &lt;/p&gt;
+&lt;p&gt;The benefits of blogging:
+- personl brand 
+- share your knowledge
+- helps like minded people connect with you.&lt;/p&gt;
+&lt;p&gt;At work, we use python, so I choose &lt;a href=""&gt;Pelican&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Setting up Env&lt;/h1&gt;
+&lt;p&gt;Create a python Env &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;conda create -n blog python=3.6
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Setting up Pelican&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican markdown
+pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These are the options I generated
+Pelican Options&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Pelican File&lt;/h1&gt;
+&lt;p&gt;The main files are pelican.conf and publishconf.py.&lt;/p&gt;
+&lt;p&gt;This is my pelican.conf&lt;/p&gt;
+&lt;p&gt;This is my publish.conf&lt;/p&gt;
+&lt;h1&gt;Customizing Pelican&lt;/h1&gt;
+&lt;p&gt;Pelican has a lot of plugins and themes.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git submodule add https://github.com/getpelican/pelican-plugins plugins
+git clone --recursive https://github.com/getpelican/pelican-themes themes
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Running Locally&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make devserver
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;strong&gt;Creating Blogpost&lt;/strong&gt;  &lt;br&gt;
+Created a blogpost is as simple as creating a md file in the content folder .
+A simple markdown file looks like&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;Folder Structure&lt;/h1&gt;
+&lt;h1&gt;Deploying to Github&lt;/h1&gt;
+&lt;p&gt;Github is a nice solution to host sites like blogs.
+Create a repo {github username}.github.io. 
+Github will render you master branch and be available at gitusername.github.io&lt;/p&gt;
+&lt;p&gt;To deply using pelican&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np18&lt;/span&gt;
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;publish&lt;/span&gt;
+&lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;output&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="nd"&gt;@github.com&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; 
+
+&lt;span class="n"&gt;pelican&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;o&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;pelicanconf&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+
+&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;publish&lt;/span&gt;
+&lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;output&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="nd"&gt;@github.com&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;USERNAME&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;  &lt;span class="n"&gt;gh&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;force&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After a while, this setup got tiring. 
+So, I now use continous integration with &lt;a href=""&gt;TravisCI&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;** Deploy using Travis CI
+My Travis file looks like &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I needed to create a git personal access token and grant it "read_public_scope" at github.
+At Travis, I needed to create an environment variable "" .&lt;/p&gt;
+&lt;p&gt;Instead of commiting to the master branch, I develop in the source branch.
+My CI is the one responsible for pushing to the master branch.&lt;/p&gt;
+&lt;h1&gt;Using Own Domain&lt;/h1&gt;
+&lt;p&gt;DNS Info 
+&lt;a href="{filename}dns.png"&gt;a link relative to the current file&lt;/a&gt;      &lt;/p&gt;
+&lt;p&gt;&lt;a href="{filename}/dns.png"&gt;a link relative to the content root&lt;/a&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img alt="Icon" src="{attach}dns.png"&gt;
+&lt;img alt="Photo" src="{attach}/dns.jpg"&gt;&lt;/p&gt;</content><category term="blog"></category><category term="python"></category><category term="tutorial"></category></entry></feed>
