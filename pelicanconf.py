@@ -61,6 +61,10 @@ DISPLAY_CATEGORIES_ON_MENU = False
 DISPLAY_RECENT_POSTS_ON_SIDEBAR = True
 DISPLAY_CATEGORIES_ON_SIDEBAR = True
 
+STATIC_PATHS = ['images', 'extra']
+EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
+
+
 
 TAG_CLOUD_STEPS = 1
 
@@ -69,5 +73,3 @@ NOTEBOOK_DIR = 'notebooks'
 EXTRA_HEADER = open('_nb_header.html').read() if os.path.exists('_nb_header.html') else None
 
 
-STATIC_PATHS = ['images', 'extra/CNAME']
-EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
