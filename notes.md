@@ -28,6 +28,8 @@ git@github.com:np18/np18.github.io.git
 git push git@github.com:${USERNAME}/${USERNAME}.github.io.git gh-pages:master --force 
 
 
+git push origin master --force
+
 git push git@github.com:${USERNAME}/${USERNAME}.github.io.git master --force 
 
 ```
@@ -41,3 +43,5 @@ git clone --recursive https://github.com/getpelican/pelican-plugins ~/pelican-pl
 ```
 
 pip install jupyter
+
+git submodule add https://github.com/getpelican/pelican-plugins plugins
