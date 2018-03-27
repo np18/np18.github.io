@@ -1,0 +1,5 @@
+paths:
+  log_dir: '~/logs/mit_frequent_fliers'
+  input_dir: '~/data/mit_frequent_fliers'
+  results_dir: '~/results/mit_frequent_fliers'
+  repo_data_dir: '~/code/etc/mit_frequent_fliers/mit-team-code/data'
