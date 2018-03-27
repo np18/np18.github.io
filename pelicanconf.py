@@ -43,7 +43,7 @@ THEME = "themes/pelican-bootstrap3"
 
 #JINJA_ENVIRONMENT = {'extensions': ['jinja2.ext.i18n']}
 BOOTSTRAP_THEME ="yeti"
-PLUGIN_PATHS = ['/Users/nidhin.pattaniyil/pelican-plugins/']
+PLUGIN_PATHS = ['plugins']
 #PLUGINS = ['assets', 'sitemap', 'gravatar']
 
 PLUGINS = ['liquid_tags.img', 'liquid_tags.video',
