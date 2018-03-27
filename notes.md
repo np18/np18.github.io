@@ -45,3 +45,4 @@ git clone --recursive https://github.com/getpelican/pelican-plugins ~/pelican-pl
 pip install jupyter
 
 git submodule add https://github.com/getpelican/pelican-plugins plugins
+git submodule update --init
