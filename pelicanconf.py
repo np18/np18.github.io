@@ -65,6 +65,12 @@ STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 
+# Markdown extensions:
+MD_EXTENSIONS = ['codehilite(css_class=highlight,'
+                 'guess_lang=False,linenums=False)',
+                 'headerid',
+                 'extra']
+
 
 TAG_CLOUD_STEPS = 1
 
